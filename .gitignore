@@ -1,2 +1,4 @@
-docs
-test
+/docs
+/docs/*
+/test
+/test/*
