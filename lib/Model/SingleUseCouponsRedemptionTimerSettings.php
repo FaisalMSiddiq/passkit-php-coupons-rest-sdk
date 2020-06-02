@@ -35,7 +35,6 @@ use \PkIo\ObjectSerializer;
  * SingleUseCouponsRedemptionTimerSettings Class Doc Comment
  *
  * @category Class
- * @description Count down timer for redemption. This only applies to the redemption type REDEMPTION_TYPE_CUSTOMER_INITIATED_CODE_FIXED.
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen

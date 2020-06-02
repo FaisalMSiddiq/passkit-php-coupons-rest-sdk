@@ -35,7 +35,6 @@ use \PkIo\ObjectSerializer;
  * SingleUseCouponsCallToActionButton Class Doc Comment
  *
  * @category Class
- * @description Call to action button rendered on error page of coupon already redeemed to provide better customer experience.
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen

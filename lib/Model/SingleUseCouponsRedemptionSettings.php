@@ -59,11 +59,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         'redemptionStartDate' => '\DateTime',
 'redemptionEndDate' => '\DateTime',
 'redemptionType' => '\PkIo\Model\SingleUseCouponsRedemptionType[]',
-'customerInitiatedfixedCode' => 'string',
-'codeProvidedOnRedeemSettings' => '\PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem',
-'standardSettings' => '\PkIo\Model\SingleUseCouponsStandardPassKitHostedPage',
-'selfHostedSettings' => '\PkIo\Model\SingleUseCouponsSelfHostedPage',
-'redemptionTimer' => '\PkIo\Model\SingleUseCouponsRedemptionTimerSettings'    ];
+'codeProvidedOnRedeemSettings' => '\PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings',
+'fixedCodeSettings' => '\PkIo\Model\SingleUseCouponsCustomerInitiatedFixedCodeSettings',
+'standardSettings' => '\PkIo\Model\SingleUseCouponsStandardPassKitHostedPage'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -74,11 +72,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         'redemptionStartDate' => 'date-time',
 'redemptionEndDate' => 'date-time',
 'redemptionType' => null,
-'customerInitiatedfixedCode' => null,
 'codeProvidedOnRedeemSettings' => null,
-'standardSettings' => null,
-'selfHostedSettings' => null,
-'redemptionTimer' => null    ];
+'fixedCodeSettings' => null,
+'standardSettings' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -110,11 +106,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         'redemptionStartDate' => 'redemptionStartDate',
 'redemptionEndDate' => 'redemptionEndDate',
 'redemptionType' => 'redemptionType',
-'customerInitiatedfixedCode' => 'customerInitiatedfixedCode',
 'codeProvidedOnRedeemSettings' => 'codeProvidedOnRedeemSettings',
-'standardSettings' => 'standardSettings',
-'selfHostedSettings' => 'selfHostedSettings',
-'redemptionTimer' => 'redemptionTimer'    ];
+'fixedCodeSettings' => 'fixedCodeSettings',
+'standardSettings' => 'standardSettings'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -125,11 +119,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         'redemptionStartDate' => 'setRedemptionStartDate',
 'redemptionEndDate' => 'setRedemptionEndDate',
 'redemptionType' => 'setRedemptionType',
-'customerInitiatedfixedCode' => 'setCustomerInitiatedfixedCode',
 'codeProvidedOnRedeemSettings' => 'setCodeProvidedOnRedeemSettings',
-'standardSettings' => 'setStandardSettings',
-'selfHostedSettings' => 'setSelfHostedSettings',
-'redemptionTimer' => 'setRedemptionTimer'    ];
+'fixedCodeSettings' => 'setFixedCodeSettings',
+'standardSettings' => 'setStandardSettings'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -140,11 +132,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         'redemptionStartDate' => 'getRedemptionStartDate',
 'redemptionEndDate' => 'getRedemptionEndDate',
 'redemptionType' => 'getRedemptionType',
-'customerInitiatedfixedCode' => 'getCustomerInitiatedfixedCode',
 'codeProvidedOnRedeemSettings' => 'getCodeProvidedOnRedeemSettings',
-'standardSettings' => 'getStandardSettings',
-'selfHostedSettings' => 'getSelfHostedSettings',
-'redemptionTimer' => 'getRedemptionTimer'    ];
+'fixedCodeSettings' => 'getFixedCodeSettings',
+'standardSettings' => 'getStandardSettings'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -207,11 +197,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
         $this->container['redemptionStartDate'] = isset($data['redemptionStartDate']) ? $data['redemptionStartDate'] : null;
         $this->container['redemptionEndDate'] = isset($data['redemptionEndDate']) ? $data['redemptionEndDate'] : null;
         $this->container['redemptionType'] = isset($data['redemptionType']) ? $data['redemptionType'] : null;
-        $this->container['customerInitiatedfixedCode'] = isset($data['customerInitiatedfixedCode']) ? $data['customerInitiatedfixedCode'] : null;
         $this->container['codeProvidedOnRedeemSettings'] = isset($data['codeProvidedOnRedeemSettings']) ? $data['codeProvidedOnRedeemSettings'] : null;
+        $this->container['fixedCodeSettings'] = isset($data['fixedCodeSettings']) ? $data['fixedCodeSettings'] : null;
         $this->container['standardSettings'] = isset($data['standardSettings']) ? $data['standardSettings'] : null;
-        $this->container['selfHostedSettings'] = isset($data['selfHostedSettings']) ? $data['selfHostedSettings'] : null;
-        $this->container['redemptionTimer'] = isset($data['redemptionTimer']) ? $data['redemptionTimer'] : null;
     }
 
     /**
@@ -311,33 +299,9 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets customerInitiatedfixedCode
-     *
-     * @return string
-     */
-    public function getCustomerInitiatedfixedCode()
-    {
-        return $this->container['customerInitiatedfixedCode'];
-    }
-
-    /**
-     * Sets customerInitiatedfixedCode
-     *
-     * @param string $customerInitiatedfixedCode For fixed code customer initiated redemption; the fixed code to display needs to be set.
-     *
-     * @return $this
-     */
-    public function setCustomerInitiatedfixedCode($customerInitiatedfixedCode)
-    {
-        $this->container['customerInitiatedfixedCode'] = $customerInitiatedfixedCode;
-
-        return $this;
-    }
-
-    /**
      * Gets codeProvidedOnRedeemSettings
      *
-     * @return \PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem
+     * @return \PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings
      */
     public function getCodeProvidedOnRedeemSettings()
     {
@@ -347,13 +311,37 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
     /**
      * Sets codeProvidedOnRedeemSettings
      *
-     * @param \PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem $codeProvidedOnRedeemSettings codeProvidedOnRedeemSettings
+     * @param \PkIo\Model\SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings $codeProvidedOnRedeemSettings codeProvidedOnRedeemSettings
      *
      * @return $this
      */
     public function setCodeProvidedOnRedeemSettings($codeProvidedOnRedeemSettings)
     {
         $this->container['codeProvidedOnRedeemSettings'] = $codeProvidedOnRedeemSettings;
+
+        return $this;
+    }
+
+    /**
+     * Gets fixedCodeSettings
+     *
+     * @return \PkIo\Model\SingleUseCouponsCustomerInitiatedFixedCodeSettings
+     */
+    public function getFixedCodeSettings()
+    {
+        return $this->container['fixedCodeSettings'];
+    }
+
+    /**
+     * Sets fixedCodeSettings
+     *
+     * @param \PkIo\Model\SingleUseCouponsCustomerInitiatedFixedCodeSettings $fixedCodeSettings fixedCodeSettings
+     *
+     * @return $this
+     */
+    public function setFixedCodeSettings($fixedCodeSettings)
+    {
+        $this->container['fixedCodeSettings'] = $fixedCodeSettings;
 
         return $this;
     }
@@ -378,54 +366,6 @@ class SingleUseCouponsRedemptionSettings implements ModelInterface, ArrayAccess
     public function setStandardSettings($standardSettings)
     {
         $this->container['standardSettings'] = $standardSettings;
-
-        return $this;
-    }
-
-    /**
-     * Gets selfHostedSettings
-     *
-     * @return \PkIo\Model\SingleUseCouponsSelfHostedPage
-     */
-    public function getSelfHostedSettings()
-    {
-        return $this->container['selfHostedSettings'];
-    }
-
-    /**
-     * Sets selfHostedSettings
-     *
-     * @param \PkIo\Model\SingleUseCouponsSelfHostedPage $selfHostedSettings selfHostedSettings
-     *
-     * @return $this
-     */
-    public function setSelfHostedSettings($selfHostedSettings)
-    {
-        $this->container['selfHostedSettings'] = $selfHostedSettings;
-
-        return $this;
-    }
-
-    /**
-     * Gets redemptionTimer
-     *
-     * @return \PkIo\Model\SingleUseCouponsRedemptionTimerSettings
-     */
-    public function getRedemptionTimer()
-    {
-        return $this->container['redemptionTimer'];
-    }
-
-    /**
-     * Sets redemptionTimer
-     *
-     * @param \PkIo\Model\SingleUseCouponsRedemptionTimerSettings $redemptionTimer redemptionTimer
-     *
-     * @return $this
-     */
-    public function setRedemptionTimer($redemptionTimer)
-    {
-        $this->container['redemptionTimer'] = $redemptionTimer;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem
+ * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem Class Doc Comment
+ * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem implements ModelInterface, ArrayAccess
+class SingleUseCouponsCustomerInitiatedCodeProvideOnRedeemSettings implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem implements ModelInter
       *
       * @var string
       */
-    protected static $swaggerModelName = 'single_use_couponsCustomerInitiatedCodeProvideOnRedeem';
+    protected static $swaggerModelName = 'single_use_couponsCustomerInitiatedCodeProvideOnRedeemSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

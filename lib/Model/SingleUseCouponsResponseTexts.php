@@ -35,7 +35,6 @@ use \PkIo\ObjectSerializer;
  * SingleUseCouponsResponseTexts Class Doc Comment
  *
  * @category Class
- * @description Customize success or error messages shown on the page or error dialog box.
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen

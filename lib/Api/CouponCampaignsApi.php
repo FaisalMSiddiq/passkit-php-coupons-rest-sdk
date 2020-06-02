@@ -1,6 +1,6 @@
 <?php
 /**
- * CouponRESTAPIApi
+ * CouponCampaignsApi
  * PHP version 5
  *
  * @category Class
@@ -39,14 +39,14 @@ use PkIo\HeaderSelector;
 use PkIo\ObjectSerializer;
 
 /**
- * CouponRESTAPIApi Class Doc Comment
+ * CouponCampaignsApi Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CouponRESTAPIApi
+class CouponCampaignsApi
 {
     /**
      * @var ClientInterface
@@ -87,416 +87,37 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation countCouponsByCouponCampaign
+     * Operation copyCouponCampaign
      *
-     * List Coupons
+     * Copy Campaign
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \PkIo\Model\IoCount
-     */
-    public function countCouponsByCouponCampaign($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
-    {
-        list($response) = $this->countCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
-        return $response;
-    }
-
-    /**
-     * Operation countCouponsByCouponCampaignWithHttpInfo
-     *
-     * List Coupons
-     *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \PkIo\Model\IoCount, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function countCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
-    {
-        $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\PkIo\Model\IoCount',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 503:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 0:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\PkIo\Model\RuntimeError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation countCouponsByCouponCampaignAsync
-     *
-     * List Coupons
-     *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function countCouponsByCouponCampaignAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
-    {
-        return $this->countCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation countCouponsByCouponCampaignAsyncWithHttpInfo
-     *
-     * List Coupons
-     *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function countCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
-    {
-        $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'countCouponsByCouponCampaign'
-     *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
-    {
-        // verify the required parameter 'couponCampaignId' is set
-        if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $couponCampaignId when calling countCouponsByCouponCampaign'
-            );
-        }
-
-        $resourcePath = '/coupon/singleUse/coupons/count/{couponCampaignId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        if ($paginationLimit !== null) {
-            $queryParams['pagination.limit'] = ObjectSerializer::toQueryValue($paginationLimit);
-        }
-        // query params
-        if ($paginationOffset !== null) {
-            $queryParams['pagination.offset'] = ObjectSerializer::toQueryValue($paginationOffset);
-        }
-        // query params
-        if (is_array($paginationFilterField)) {
-            $paginationFilterField = ObjectSerializer::serializeCollection($paginationFilterField, 'multi', true);
-        }
-        if ($paginationFilterField !== null) {
-            $queryParams['pagination.filterField'] = ObjectSerializer::toQueryValue($paginationFilterField);
-        }
-        // query params
-        if (is_array($paginationFilterValue)) {
-            $paginationFilterValue = ObjectSerializer::serializeCollection($paginationFilterValue, 'multi', true);
-        }
-        if ($paginationFilterValue !== null) {
-            $queryParams['pagination.filterValue'] = ObjectSerializer::toQueryValue($paginationFilterValue);
-        }
-        // query params
-        if (is_array($paginationFilterOperator)) {
-            $paginationFilterOperator = ObjectSerializer::serializeCollection($paginationFilterOperator, 'multi', true);
-        }
-        if ($paginationFilterOperator !== null) {
-            $queryParams['pagination.filterOperator'] = ObjectSerializer::toQueryValue($paginationFilterOperator);
-        }
-        // query params
-        if ($paginationOrderBy !== null) {
-            $queryParams['pagination.orderBy'] = ObjectSerializer::toQueryValue($paginationOrderBy);
-        }
-        // query params
-        if ($paginationOrderAsc !== null) {
-            $queryParams['pagination.orderAsc'] = ObjectSerializer::toQueryValue($paginationOrderAsc);
-        }
-
-        // path params
-        if ($couponCampaignId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'couponCampaignId' . '}',
-                ObjectSerializer::toPathValue($couponCampaignId),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation createCoupon
-     *
-     * Create Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCampaignCopyRequest $body body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \PkIo\Model\IoId
      */
-    public function createCoupon($body)
+    public function copyCouponCampaign($body)
     {
-        list($response) = $this->createCouponWithHttpInfo($body);
+        list($response) = $this->copyCouponCampaignWithHttpInfo($body);
         return $response;
     }
 
     /**
-     * Operation createCouponWithHttpInfo
+     * Operation copyCouponCampaignWithHttpInfo
      *
-     * Create Coupon
+     * Copy Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCampaignCopyRequest $body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \PkIo\Model\IoId, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCouponWithHttpInfo($body)
+    public function copyCouponCampaignWithHttpInfo($body)
     {
         $returnType = '\PkIo\Model\IoId';
-        $request = $this->createCouponRequest($body);
+        $request = $this->copyCouponCampaignRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -598,18 +219,18 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation createCouponAsync
+     * Operation copyCouponCampaignAsync
      *
-     * Create Coupon
+     * Copy Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCampaignCopyRequest $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCouponAsync($body)
+    public function copyCouponCampaignAsync($body)
     {
-        return $this->createCouponAsyncWithHttpInfo($body)
+        return $this->copyCouponCampaignAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -618,19 +239,19 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation createCouponAsyncWithHttpInfo
+     * Operation copyCouponCampaignAsyncWithHttpInfo
      *
-     * Create Coupon
+     * Copy Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCampaignCopyRequest $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCouponAsyncWithHttpInfo($body)
+    public function copyCouponCampaignAsyncWithHttpInfo($body)
     {
         $returnType = '\PkIo\Model\IoId';
-        $request = $this->createCouponRequest($body);
+        $request = $this->copyCouponCampaignRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -670,23 +291,23 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'createCoupon'
+     * Create request for operation 'copyCouponCampaign'
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCampaignCopyRequest $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createCouponRequest($body)
+    protected function copyCouponCampaignRequest($body)
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling createCoupon'
+                'Missing the required parameter $body when calling copyCouponCampaign'
             );
         }
 
-        $resourcePath = '/coupon/singleUse/coupon';
+        $resourcePath = '/coupon/singleUse/campaign/copy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -768,37 +389,37 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation createCouponPublic
+     * Operation createCouponCampaign
      *
-     * Create Coupon (public)
+     * Create Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \PkIo\Model\IoId
      */
-    public function createCouponPublic($body)
+    public function createCouponCampaign($body)
     {
-        list($response) = $this->createCouponPublicWithHttpInfo($body);
+        list($response) = $this->createCouponCampaignWithHttpInfo($body);
         return $response;
     }
 
     /**
-     * Operation createCouponPublicWithHttpInfo
+     * Operation createCouponCampaignWithHttpInfo
      *
-     * Create Coupon (public)
+     * Create Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \PkIo\Model\IoId, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCouponPublicWithHttpInfo($body)
+    public function createCouponCampaignWithHttpInfo($body)
     {
         $returnType = '\PkIo\Model\IoId';
-        $request = $this->createCouponPublicRequest($body);
+        $request = $this->createCouponCampaignRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -900,18 +521,18 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation createCouponPublicAsync
+     * Operation createCouponCampaignAsync
      *
-     * Create Coupon (public)
+     * Create Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCouponPublicAsync($body)
+    public function createCouponCampaignAsync($body)
     {
-        return $this->createCouponPublicAsyncWithHttpInfo($body)
+        return $this->createCouponCampaignAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -920,19 +541,19 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation createCouponPublicAsyncWithHttpInfo
+     * Operation createCouponCampaignAsyncWithHttpInfo
      *
-     * Create Coupon (public)
+     * Create Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCouponPublicAsyncWithHttpInfo($body)
+    public function createCouponCampaignAsyncWithHttpInfo($body)
     {
         $returnType = '\PkIo\Model\IoId';
-        $request = $this->createCouponPublicRequest($body);
+        $request = $this->createCouponCampaignRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -972,23 +593,23 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'createCouponPublic'
+     * Create request for operation 'createCouponCampaign'
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createCouponPublicRequest($body)
+    protected function createCouponCampaignRequest($body)
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling createCouponPublic'
+                'Missing the required parameter $body when calling createCouponCampaign'
             );
         }
 
-        $resourcePath = '/coupon/singleUse/coupon/public';
+        $resourcePath = '/coupon/singleUse/campaign';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1070,39 +691,39 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponByExternalId
+     * Operation deleteCouponCampaign
      *
-     * Get Coupon by External ID
+     * Delete Coupon Campaign
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  string $externalId External ID (required)
+     * @param  \PkIo\Model\IoId $body body (required)
+     * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \PkIo\Model\SingleUseCouponsCoupon
+     * @return object
      */
-    public function getCouponByExternalId($couponCampaignId, $externalId)
+    public function deleteCouponCampaign($body, $id)
     {
-        list($response) = $this->getCouponByExternalIdWithHttpInfo($couponCampaignId, $externalId);
+        list($response) = $this->deleteCouponCampaignWithHttpInfo($body, $id);
         return $response;
     }
 
     /**
-     * Operation getCouponByExternalIdWithHttpInfo
+     * Operation deleteCouponCampaignWithHttpInfo
      *
-     * Get Coupon by External ID
+     * Delete Coupon Campaign
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  string $externalId External ID (required)
+     * @param  \PkIo\Model\IoId $body (required)
+     * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \PkIo\Model\SingleUseCouponsCoupon, HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCouponByExternalIdWithHttpInfo($couponCampaignId, $externalId)
+    public function deleteCouponCampaignWithHttpInfo($body, $id)
     {
-        $returnType = '\PkIo\Model\SingleUseCouponsCoupon';
-        $request = $this->getCouponByExternalIdRequest($couponCampaignId, $externalId);
+        $returnType = 'object';
+        $request = $this->deleteCouponCampaignRequest($body, $id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1153,7 +774,7 @@ class CouponRESTAPIApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\PkIo\Model\SingleUseCouponsCoupon',
+                        'object',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1204,19 +825,19 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponByExternalIdAsync
+     * Operation deleteCouponCampaignAsync
      *
-     * Get Coupon by External ID
+     * Delete Coupon Campaign
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  string $externalId External ID (required)
+     * @param  \PkIo\Model\IoId $body (required)
+     * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCouponByExternalIdAsync($couponCampaignId, $externalId)
+    public function deleteCouponCampaignAsync($body, $id)
     {
-        return $this->getCouponByExternalIdAsyncWithHttpInfo($couponCampaignId, $externalId)
+        return $this->deleteCouponCampaignAsyncWithHttpInfo($body, $id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1225,20 +846,20 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponByExternalIdAsyncWithHttpInfo
+     * Operation deleteCouponCampaignAsyncWithHttpInfo
      *
-     * Get Coupon by External ID
+     * Delete Coupon Campaign
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  string $externalId External ID (required)
+     * @param  \PkIo\Model\IoId $body (required)
+     * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCouponByExternalIdAsyncWithHttpInfo($couponCampaignId, $externalId)
+    public function deleteCouponCampaignAsyncWithHttpInfo($body, $id)
     {
-        $returnType = '\PkIo\Model\SingleUseCouponsCoupon';
-        $request = $this->getCouponByExternalIdRequest($couponCampaignId, $externalId);
+        $returnType = 'object';
+        $request = $this->deleteCouponCampaignRequest($body, $id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1278,30 +899,30 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'getCouponByExternalId'
+     * Create request for operation 'deleteCouponCampaign'
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  string $externalId External ID (required)
+     * @param  \PkIo\Model\IoId $body (required)
+     * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCouponByExternalIdRequest($couponCampaignId, $externalId)
+    protected function deleteCouponCampaignRequest($body, $id)
     {
-        // verify the required parameter 'couponCampaignId' is set
-        if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $couponCampaignId when calling getCouponByExternalId'
+                'Missing the required parameter $body when calling deleteCouponCampaign'
             );
         }
-        // verify the required parameter 'externalId' is set
-        if ($externalId === null || (is_array($externalId) && count($externalId) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $externalId when calling getCouponByExternalId'
+                'Missing the required parameter $id when calling deleteCouponCampaign'
             );
         }
 
-        $resourcePath = '/coupon/singleUse/coupon/externalId/{couponCampaignId}/{externalId}';
+        $resourcePath = '/coupon/singleUse/campaign/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1310,18 +931,365 @@ class CouponRESTAPIApi
 
 
         // path params
-        if ($couponCampaignId !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'couponCampaignId' . '}',
-                ObjectSerializer::toPathValue($couponCampaignId),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAnalytics
+     *
+     * Get Coupon Campaign Analytics
+     *
+     * @param  string $classId An identifier of the class in the protocol. (required)
+     * @param  string $protocol A type of protocol.   - RAW_PROTOCOL: Reserved for v2 v3 legacy pass protocol.  - V1_PROTOCOL: Reserved for migrating legacy v1 passes.  - FLIGHT_PROTOCOL: Flights - mapped to Google&#x27;s boarding passes class.  - LOYALTY_PROTOCOL: Loyalty - mapped to Google&#x27;s loyalty class.  - EVENT_TICKET_PROTOCOL: Event Tickets; - mapped to Google&#x27;s event ticket class.  - COUPON_PROTOCOL: Coupons - mapped to Google&#x27;s offer class.  - STORED_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s gift class.  - TRANSIT_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s transit class.  - MEMBERSHIP: Values 100 onwards are for PassKit generic protocols. Generic Membership protocol  - SINGLE_USE_COUPON: Single Use Coupon protocol  - PROP_0001: Values 1000 onwards are for proprietary protocols Proprietary protocol.  - PROP_0002: Proprietary protocol. (optional)
+     * @param  string $period A period unit of individual data (day, month or year).   - DAY: Show individual data by day.  - MONTH: Default response will be in months.  - YEAR: Show individual data by year. (optional)
+     * @param  string $startDate Start date sets the oldest date of the data to be shown. (optional)
+     * @param  string $endDate End date sets the latest date of the data to be shown. (optional)
+     * @param  string $timezone Timezone in IANA format; defaults to UTC if not providedd. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \PkIo\Model\SingleUseCouponsCouponCampaignAnalyticsResponse
+     */
+    public function getAnalytics($classId, $protocol = null, $period = null, $startDate = null, $endDate = null, $timezone = null)
+    {
+        list($response) = $this->getAnalyticsWithHttpInfo($classId, $protocol, $period, $startDate, $endDate, $timezone);
+        return $response;
+    }
+
+    /**
+     * Operation getAnalyticsWithHttpInfo
+     *
+     * Get Coupon Campaign Analytics
+     *
+     * @param  string $classId An identifier of the class in the protocol. (required)
+     * @param  string $protocol A type of protocol.   - RAW_PROTOCOL: Reserved for v2 v3 legacy pass protocol.  - V1_PROTOCOL: Reserved for migrating legacy v1 passes.  - FLIGHT_PROTOCOL: Flights - mapped to Google&#x27;s boarding passes class.  - LOYALTY_PROTOCOL: Loyalty - mapped to Google&#x27;s loyalty class.  - EVENT_TICKET_PROTOCOL: Event Tickets; - mapped to Google&#x27;s event ticket class.  - COUPON_PROTOCOL: Coupons - mapped to Google&#x27;s offer class.  - STORED_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s gift class.  - TRANSIT_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s transit class.  - MEMBERSHIP: Values 100 onwards are for PassKit generic protocols. Generic Membership protocol  - SINGLE_USE_COUPON: Single Use Coupon protocol  - PROP_0001: Values 1000 onwards are for proprietary protocols Proprietary protocol.  - PROP_0002: Proprietary protocol. (optional)
+     * @param  string $period A period unit of individual data (day, month or year).   - DAY: Show individual data by day.  - MONTH: Default response will be in months.  - YEAR: Show individual data by year. (optional)
+     * @param  string $startDate Start date sets the oldest date of the data to be shown. (optional)
+     * @param  string $endDate End date sets the latest date of the data to be shown. (optional)
+     * @param  string $timezone Timezone in IANA format; defaults to UTC if not providedd. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \PkIo\Model\SingleUseCouponsCouponCampaignAnalyticsResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAnalyticsWithHttpInfo($classId, $protocol = null, $period = null, $startDate = null, $endDate = null, $timezone = null)
+    {
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaignAnalyticsResponse';
+        $request = $this->getAnalyticsRequest($classId, $protocol, $period, $startDate, $endDate, $timezone);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\SingleUseCouponsCouponCampaignAnalyticsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAnalyticsAsync
+     *
+     * Get Coupon Campaign Analytics
+     *
+     * @param  string $classId An identifier of the class in the protocol. (required)
+     * @param  string $protocol A type of protocol.   - RAW_PROTOCOL: Reserved for v2 v3 legacy pass protocol.  - V1_PROTOCOL: Reserved for migrating legacy v1 passes.  - FLIGHT_PROTOCOL: Flights - mapped to Google&#x27;s boarding passes class.  - LOYALTY_PROTOCOL: Loyalty - mapped to Google&#x27;s loyalty class.  - EVENT_TICKET_PROTOCOL: Event Tickets; - mapped to Google&#x27;s event ticket class.  - COUPON_PROTOCOL: Coupons - mapped to Google&#x27;s offer class.  - STORED_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s gift class.  - TRANSIT_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s transit class.  - MEMBERSHIP: Values 100 onwards are for PassKit generic protocols. Generic Membership protocol  - SINGLE_USE_COUPON: Single Use Coupon protocol  - PROP_0001: Values 1000 onwards are for proprietary protocols Proprietary protocol.  - PROP_0002: Proprietary protocol. (optional)
+     * @param  string $period A period unit of individual data (day, month or year).   - DAY: Show individual data by day.  - MONTH: Default response will be in months.  - YEAR: Show individual data by year. (optional)
+     * @param  string $startDate Start date sets the oldest date of the data to be shown. (optional)
+     * @param  string $endDate End date sets the latest date of the data to be shown. (optional)
+     * @param  string $timezone Timezone in IANA format; defaults to UTC if not providedd. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAnalyticsAsync($classId, $protocol = null, $period = null, $startDate = null, $endDate = null, $timezone = null)
+    {
+        return $this->getAnalyticsAsyncWithHttpInfo($classId, $protocol, $period, $startDate, $endDate, $timezone)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAnalyticsAsyncWithHttpInfo
+     *
+     * Get Coupon Campaign Analytics
+     *
+     * @param  string $classId An identifier of the class in the protocol. (required)
+     * @param  string $protocol A type of protocol.   - RAW_PROTOCOL: Reserved for v2 v3 legacy pass protocol.  - V1_PROTOCOL: Reserved for migrating legacy v1 passes.  - FLIGHT_PROTOCOL: Flights - mapped to Google&#x27;s boarding passes class.  - LOYALTY_PROTOCOL: Loyalty - mapped to Google&#x27;s loyalty class.  - EVENT_TICKET_PROTOCOL: Event Tickets; - mapped to Google&#x27;s event ticket class.  - COUPON_PROTOCOL: Coupons - mapped to Google&#x27;s offer class.  - STORED_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s gift class.  - TRANSIT_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s transit class.  - MEMBERSHIP: Values 100 onwards are for PassKit generic protocols. Generic Membership protocol  - SINGLE_USE_COUPON: Single Use Coupon protocol  - PROP_0001: Values 1000 onwards are for proprietary protocols Proprietary protocol.  - PROP_0002: Proprietary protocol. (optional)
+     * @param  string $period A period unit of individual data (day, month or year).   - DAY: Show individual data by day.  - MONTH: Default response will be in months.  - YEAR: Show individual data by year. (optional)
+     * @param  string $startDate Start date sets the oldest date of the data to be shown. (optional)
+     * @param  string $endDate End date sets the latest date of the data to be shown. (optional)
+     * @param  string $timezone Timezone in IANA format; defaults to UTC if not providedd. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAnalyticsAsyncWithHttpInfo($classId, $protocol = null, $period = null, $startDate = null, $endDate = null, $timezone = null)
+    {
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaignAnalyticsResponse';
+        $request = $this->getAnalyticsRequest($classId, $protocol, $period, $startDate, $endDate, $timezone);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAnalytics'
+     *
+     * @param  string $classId An identifier of the class in the protocol. (required)
+     * @param  string $protocol A type of protocol.   - RAW_PROTOCOL: Reserved for v2 v3 legacy pass protocol.  - V1_PROTOCOL: Reserved for migrating legacy v1 passes.  - FLIGHT_PROTOCOL: Flights - mapped to Google&#x27;s boarding passes class.  - LOYALTY_PROTOCOL: Loyalty - mapped to Google&#x27;s loyalty class.  - EVENT_TICKET_PROTOCOL: Event Tickets; - mapped to Google&#x27;s event ticket class.  - COUPON_PROTOCOL: Coupons - mapped to Google&#x27;s offer class.  - STORED_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s gift class.  - TRANSIT_VALUE_PROTOCOL: Stored Value - mapped to Google&#x27;s transit class.  - MEMBERSHIP: Values 100 onwards are for PassKit generic protocols. Generic Membership protocol  - SINGLE_USE_COUPON: Single Use Coupon protocol  - PROP_0001: Values 1000 onwards are for proprietary protocols Proprietary protocol.  - PROP_0002: Proprietary protocol. (optional)
+     * @param  string $period A period unit of individual data (day, month or year).   - DAY: Show individual data by day.  - MONTH: Default response will be in months.  - YEAR: Show individual data by year. (optional)
+     * @param  string $startDate Start date sets the oldest date of the data to be shown. (optional)
+     * @param  string $endDate End date sets the latest date of the data to be shown. (optional)
+     * @param  string $timezone Timezone in IANA format; defaults to UTC if not providedd. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getAnalyticsRequest($classId, $protocol = null, $period = null, $startDate = null, $endDate = null, $timezone = null)
+    {
+        // verify the required parameter 'classId' is set
+        if ($classId === null || (is_array($classId) && count($classId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $classId when calling getAnalytics'
+            );
+        }
+
+        $resourcePath = '/coupon/singleUse/campaign/{classId}/analytics';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($protocol !== null) {
+            $queryParams['protocol'] = ObjectSerializer::toQueryValue($protocol);
+        }
+        // query params
+        if ($period !== null) {
+            $queryParams['period'] = ObjectSerializer::toQueryValue($period);
+        }
+        // query params
+        if ($startDate !== null) {
+            $queryParams['startDate'] = ObjectSerializer::toQueryValue($startDate);
+        }
+        // query params
+        if ($endDate !== null) {
+            $queryParams['endDate'] = ObjectSerializer::toQueryValue($endDate);
+        }
+        // query params
+        if ($timezone !== null) {
+            $queryParams['timezone'] = ObjectSerializer::toQueryValue($timezone);
+        }
+
         // path params
-        if ($externalId !== null) {
+        if ($classId !== null) {
             $resourcePath = str_replace(
-                '{' . 'externalId' . '}',
-                ObjectSerializer::toPathValue($externalId),
+                '{' . 'classId' . '}',
+                ObjectSerializer::toPathValue($classId),
                 $resourcePath
             );
         }
@@ -1396,37 +1364,37 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponById
+     * Operation getCouponCampaign
      *
-     * Get Coupon by ID
+     * Get Coupon Campaign
      *
      * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \PkIo\Model\SingleUseCouponsCoupon
+     * @return \PkIo\Model\SingleUseCouponsCouponCampaign
      */
-    public function getCouponById($id)
+    public function getCouponCampaign($id)
     {
-        list($response) = $this->getCouponByIdWithHttpInfo($id);
+        list($response) = $this->getCouponCampaignWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation getCouponByIdWithHttpInfo
+     * Operation getCouponCampaignWithHttpInfo
      *
-     * Get Coupon by ID
+     * Get Coupon Campaign
      *
      * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \PkIo\Model\SingleUseCouponsCoupon, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \PkIo\Model\SingleUseCouponsCouponCampaign, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCouponByIdWithHttpInfo($id)
+    public function getCouponCampaignWithHttpInfo($id)
     {
-        $returnType = '\PkIo\Model\SingleUseCouponsCoupon';
-        $request = $this->getCouponByIdRequest($id);
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaign';
+        $request = $this->getCouponCampaignRequest($id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1477,7 +1445,7 @@ class CouponRESTAPIApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\PkIo\Model\SingleUseCouponsCoupon',
+                        '\PkIo\Model\SingleUseCouponsCouponCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1528,18 +1496,18 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponByIdAsync
+     * Operation getCouponCampaignAsync
      *
-     * Get Coupon by ID
+     * Get Coupon Campaign
      *
      * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCouponByIdAsync($id)
+    public function getCouponCampaignAsync($id)
     {
-        return $this->getCouponByIdAsyncWithHttpInfo($id)
+        return $this->getCouponCampaignAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1548,19 +1516,19 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation getCouponByIdAsyncWithHttpInfo
+     * Operation getCouponCampaignAsyncWithHttpInfo
      *
-     * Get Coupon by ID
+     * Get Coupon Campaign
      *
      * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCouponByIdAsyncWithHttpInfo($id)
+    public function getCouponCampaignAsyncWithHttpInfo($id)
     {
-        $returnType = '\PkIo\Model\SingleUseCouponsCoupon';
-        $request = $this->getCouponByIdRequest($id);
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaign';
+        $request = $this->getCouponCampaignRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1600,23 +1568,23 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'getCouponById'
+     * Create request for operation 'getCouponCampaign'
      *
      * @param  string $id The unique identifier to an object or record. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCouponByIdRequest($id)
+    protected function getCouponCampaignRequest($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getCouponById'
+                'Missing the required parameter $id when calling getCouponCampaign'
             );
         }
 
-        $resourcePath = '/coupon/singleUse/coupon/{id}';
+        $resourcePath = '/coupon/singleUse/campaign/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1703,51 +1671,49 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation listCouponsByCouponCampaign
+     * Operation listCouponCampaigns
      *
-     * List Coupons
+     * List Coupon Campaigns
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function listCouponsByCouponCampaign($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponCampaigns($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
-        list($response) = $this->listCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        list($response) = $this->listCouponCampaignsWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
         return $response;
     }
 
     /**
-     * Operation listCouponsByCouponCampaignWithHttpInfo
+     * Operation listCouponCampaignsWithHttpInfo
      *
-     * List Coupons
+     * List Coupon Campaigns
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponCampaignsWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
         $returnType = 'object';
-        $request = $this->listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listCouponCampaignsRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1849,25 +1815,24 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation listCouponsByCouponCampaignAsync
+     * Operation listCouponCampaignsAsync
      *
-     * List Coupons
+     * List Coupon Campaigns
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCouponsByCouponCampaignAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponCampaignsAsync($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
-        return $this->listCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+        return $this->listCouponCampaignsAsyncWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1876,26 +1841,25 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation listCouponsByCouponCampaignAsyncWithHttpInfo
+     * Operation listCouponCampaignsAsyncWithHttpInfo
      *
-     * List Coupons
+     * List Coupon Campaigns
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponCampaignsAsyncWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
         $returnType = 'object';
-        $request = $this->listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listCouponCampaignsRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1935,30 +1899,23 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'listCouponsByCouponCampaign'
+     * Create request for operation 'listCouponCampaigns'
      *
-     * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    protected function listCouponCampaignsRequest($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
-        // verify the required parameter 'couponCampaignId' is set
-        if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $couponCampaignId when calling listCouponsByCouponCampaign'
-            );
-        }
 
-        $resourcePath = '/coupon/singleUse/coupons/{couponCampaignId}';
+        $resourcePath = '/coupon/singleUse/campaigns';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1966,51 +1923,43 @@ class CouponRESTAPIApi
         $multipart = false;
 
         // query params
-        if ($paginationLimit !== null) {
-            $queryParams['pagination.limit'] = ObjectSerializer::toQueryValue($paginationLimit);
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
         }
         // query params
-        if ($paginationOffset !== null) {
-            $queryParams['pagination.offset'] = ObjectSerializer::toQueryValue($paginationOffset);
+        if ($offset !== null) {
+            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         }
         // query params
-        if (is_array($paginationFilterField)) {
-            $paginationFilterField = ObjectSerializer::serializeCollection($paginationFilterField, 'multi', true);
+        if (is_array($filterField)) {
+            $filterField = ObjectSerializer::serializeCollection($filterField, 'multi', true);
         }
-        if ($paginationFilterField !== null) {
-            $queryParams['pagination.filterField'] = ObjectSerializer::toQueryValue($paginationFilterField);
-        }
-        // query params
-        if (is_array($paginationFilterValue)) {
-            $paginationFilterValue = ObjectSerializer::serializeCollection($paginationFilterValue, 'multi', true);
-        }
-        if ($paginationFilterValue !== null) {
-            $queryParams['pagination.filterValue'] = ObjectSerializer::toQueryValue($paginationFilterValue);
+        if ($filterField !== null) {
+            $queryParams['filterField'] = ObjectSerializer::toQueryValue($filterField);
         }
         // query params
-        if (is_array($paginationFilterOperator)) {
-            $paginationFilterOperator = ObjectSerializer::serializeCollection($paginationFilterOperator, 'multi', true);
+        if (is_array($filterValue)) {
+            $filterValue = ObjectSerializer::serializeCollection($filterValue, 'multi', true);
         }
-        if ($paginationFilterOperator !== null) {
-            $queryParams['pagination.filterOperator'] = ObjectSerializer::toQueryValue($paginationFilterOperator);
-        }
-        // query params
-        if ($paginationOrderBy !== null) {
-            $queryParams['pagination.orderBy'] = ObjectSerializer::toQueryValue($paginationOrderBy);
+        if ($filterValue !== null) {
+            $queryParams['filterValue'] = ObjectSerializer::toQueryValue($filterValue);
         }
         // query params
-        if ($paginationOrderAsc !== null) {
-            $queryParams['pagination.orderAsc'] = ObjectSerializer::toQueryValue($paginationOrderAsc);
+        if (is_array($filterOperator)) {
+            $filterOperator = ObjectSerializer::serializeCollection($filterOperator, 'multi', true);
+        }
+        if ($filterOperator !== null) {
+            $queryParams['filterOperator'] = ObjectSerializer::toQueryValue($filterOperator);
+        }
+        // query params
+        if ($orderBy !== null) {
+            $queryParams['orderBy'] = ObjectSerializer::toQueryValue($orderBy);
+        }
+        // query params
+        if ($orderAsc !== null) {
+            $queryParams['orderAsc'] = ObjectSerializer::toQueryValue($orderAsc);
         }
 
-        // path params
-        if ($couponCampaignId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'couponCampaignId' . '}',
-                ObjectSerializer::toPathValue($couponCampaignId),
-                $resourcePath
-            );
-        }
 
         // body params
         $_tempBody = null;
@@ -2082,37 +2031,37 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation redeemCoupon
+     * Operation updateCouponCampaign
      *
-     * Redeem Coupon
+     * Update Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \PkIo\Model\IoId
+     * @return \PkIo\Model\SingleUseCouponsCouponCampaign
      */
-    public function redeemCoupon($body)
+    public function updateCouponCampaign($body)
     {
-        list($response) = $this->redeemCouponWithHttpInfo($body);
+        list($response) = $this->updateCouponCampaignWithHttpInfo($body);
         return $response;
     }
 
     /**
-     * Operation redeemCouponWithHttpInfo
+     * Operation updateCouponCampaignWithHttpInfo
      *
-     * Redeem Coupon
+     * Update Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \PkIo\Model\IoId, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \PkIo\Model\SingleUseCouponsCouponCampaign, HTTP status code, HTTP response headers (array of strings)
      */
-    public function redeemCouponWithHttpInfo($body)
+    public function updateCouponCampaignWithHttpInfo($body)
     {
-        $returnType = '\PkIo\Model\IoId';
-        $request = $this->redeemCouponRequest($body);
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaign';
+        $request = $this->updateCouponCampaignRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2163,7 +2112,7 @@ class CouponRESTAPIApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\PkIo\Model\IoId',
+                        '\PkIo\Model\SingleUseCouponsCouponCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2214,18 +2163,18 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation redeemCouponAsync
+     * Operation updateCouponCampaignAsync
      *
-     * Redeem Coupon
+     * Update Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function redeemCouponAsync($body)
+    public function updateCouponCampaignAsync($body)
     {
-        return $this->redeemCouponAsyncWithHttpInfo($body)
+        return $this->updateCouponCampaignAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2234,19 +2183,19 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Operation redeemCouponAsyncWithHttpInfo
+     * Operation updateCouponCampaignAsyncWithHttpInfo
      *
-     * Redeem Coupon
+     * Update Coupon Campaign
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function redeemCouponAsyncWithHttpInfo($body)
+    public function updateCouponCampaignAsyncWithHttpInfo($body)
     {
-        $returnType = '\PkIo\Model\IoId';
-        $request = $this->redeemCouponRequest($body);
+        $returnType = '\PkIo\Model\SingleUseCouponsCouponCampaign';
+        $request = $this->updateCouponCampaignRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2286,23 +2235,23 @@ class CouponRESTAPIApi
     }
 
     /**
-     * Create request for operation 'redeemCoupon'
+     * Create request for operation 'updateCouponCampaign'
      *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
+     * @param  \PkIo\Model\SingleUseCouponsCouponCampaign $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function redeemCouponRequest($body)
+    protected function updateCouponCampaignRequest($body)
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling redeemCoupon'
+                'Missing the required parameter $body when calling updateCouponCampaign'
             );
         }
 
-        $resourcePath = '/coupon/singleUse/coupon/redeem';
+        $resourcePath = '/coupon/singleUse/campaign';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2377,610 +2326,6 @@ class CouponRESTAPIApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateCoupon
-     *
-     * Update Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body body (required)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \PkIo\Model\IoId
-     */
-    public function updateCoupon($body)
-    {
-        list($response) = $this->updateCouponWithHttpInfo($body);
-        return $response;
-    }
-
-    /**
-     * Operation updateCouponWithHttpInfo
-     *
-     * Update Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \PkIo\Model\IoId, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateCouponWithHttpInfo($body)
-    {
-        $returnType = '\PkIo\Model\IoId';
-        $request = $this->updateCouponRequest($body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\PkIo\Model\IoId',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 503:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 0:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\PkIo\Model\RuntimeError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateCouponAsync
-     *
-     * Update Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateCouponAsync($body)
-    {
-        return $this->updateCouponAsyncWithHttpInfo($body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateCouponAsyncWithHttpInfo
-     *
-     * Update Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateCouponAsyncWithHttpInfo($body)
-    {
-        $returnType = '\PkIo\Model\IoId';
-        $request = $this->updateCouponRequest($body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateCoupon'
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function updateCouponRequest($body)
-    {
-        // verify the required parameter 'body' is set
-        if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling updateCoupon'
-            );
-        }
-
-        $resourcePath = '/coupon/singleUse/coupon';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation voidCoupon
-     *
-     * Void Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body body (required)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return object
-     */
-    public function voidCoupon($body)
-    {
-        list($response) = $this->voidCouponWithHttpInfo($body);
-        return $response;
-    }
-
-    /**
-     * Operation voidCouponWithHttpInfo
-     *
-     * Void Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \PkIo\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of object, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function voidCouponWithHttpInfo($body)
-    {
-        $returnType = 'object';
-        $request = $this->voidCouponRequest($body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 503:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 0:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\PkIo\Model\RuntimeError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation voidCouponAsync
-     *
-     * Void Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function voidCouponAsync($body)
-    {
-        return $this->voidCouponAsyncWithHttpInfo($body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation voidCouponAsyncWithHttpInfo
-     *
-     * Void Coupon
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function voidCouponAsyncWithHttpInfo($body)
-    {
-        $returnType = 'object';
-        $request = $this->voidCouponRequest($body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'voidCoupon'
-     *
-     * @param  \PkIo\Model\SingleUseCouponsCoupon $body (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function voidCouponRequest($body)
-    {
-        // verify the required parameter 'body' is set
-        if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling voidCoupon'
-            );
-        }
-
-        $resourcePath = '/coupon/singleUse/coupon';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

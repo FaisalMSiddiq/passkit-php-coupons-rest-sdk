@@ -1,6 +1,6 @@
 <?php
 /**
- * SingleUseCouponsSelfHostedPage
+ * SingleUseCouponsCustomerInitiatedFixedCodeSettings
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * SingleUseCouponsSelfHostedPage Class Doc Comment
+ * SingleUseCouponsCustomerInitiatedFixedCodeSettings Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
+class SingleUseCouponsCustomerInitiatedFixedCodeSettings implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'single_use_couponsSelfHostedPage';
+    protected static $swaggerModelName = 'single_use_couponsCustomerInitiatedFixedCodeSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,9 +56,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'url' => 'string',
-'title' => 'string',
-'localizedTitle' => '\PkIo\Model\IoLocalizedString'    ];
+        'fixedCode' => 'string',
+'useCouponSku' => 'bool',
+'barcode' => '\PkIo\Model\IoBarcodeType',
+'redemptionTimer' => '\PkIo\Model\SingleUseCouponsRedemptionTimerSettings'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -66,9 +67,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'url' => null,
-'title' => null,
-'localizedTitle' => null    ];
+        'fixedCode' => null,
+'useCouponSku' => 'boolean',
+'barcode' => null,
+'redemptionTimer' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -97,9 +99,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
-'title' => 'title',
-'localizedTitle' => 'localizedTitle'    ];
+        'fixedCode' => 'fixedCode',
+'useCouponSku' => 'useCouponSku',
+'barcode' => 'barcode',
+'redemptionTimer' => 'redemptionTimer'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -107,9 +110,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
-'title' => 'setTitle',
-'localizedTitle' => 'setLocalizedTitle'    ];
+        'fixedCode' => 'setFixedCode',
+'useCouponSku' => 'setUseCouponSku',
+'barcode' => 'setBarcode',
+'redemptionTimer' => 'setRedemptionTimer'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -117,9 +121,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
-'title' => 'getTitle',
-'localizedTitle' => 'getLocalizedTitle'    ];
+        'fixedCode' => 'getFixedCode',
+'useCouponSku' => 'getUseCouponSku',
+'barcode' => 'getBarcode',
+'redemptionTimer' => 'getRedemptionTimer'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -179,9 +184,10 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
-        $this->container['localizedTitle'] = isset($data['localizedTitle']) ? $data['localizedTitle'] : null;
+        $this->container['fixedCode'] = isset($data['fixedCode']) ? $data['fixedCode'] : null;
+        $this->container['useCouponSku'] = isset($data['useCouponSku']) ? $data['useCouponSku'] : null;
+        $this->container['barcode'] = isset($data['barcode']) ? $data['barcode'] : null;
+        $this->container['redemptionTimer'] = isset($data['redemptionTimer']) ? $data['redemptionTimer'] : null;
     }
 
     /**
@@ -209,73 +215,97 @@ class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets url
+     * Gets fixedCode
      *
      * @return string
      */
-    public function getUrl()
+    public function getFixedCode()
     {
-        return $this->container['url'];
+        return $this->container['fixedCode'];
     }
 
     /**
-     * Sets url
+     * Sets fixedCode
      *
-     * @param string $url url
+     * @param string $fixedCode For fixed code customer initiated redemption; the fixed code to display needs to be set.
      *
      * @return $this
      */
-    public function setUrl($url)
+    public function setFixedCode($fixedCode)
     {
-        $this->container['url'] = $url;
+        $this->container['fixedCode'] = $fixedCode;
 
         return $this;
     }
 
     /**
-     * Gets title
+     * Gets useCouponSku
      *
-     * @return string
+     * @return bool
      */
-    public function getTitle()
+    public function getUseCouponSku()
     {
-        return $this->container['title'];
+        return $this->container['useCouponSku'];
     }
 
     /**
-     * Sets title
+     * Sets useCouponSku
      *
-     * @param string $title title
+     * @param bool $useCouponSku If set to true will use coupon.sku as the fixed code.
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setUseCouponSku($useCouponSku)
     {
-        $this->container['title'] = $title;
+        $this->container['useCouponSku'] = $useCouponSku;
 
         return $this;
     }
 
     /**
-     * Gets localizedTitle
+     * Gets barcode
      *
-     * @return \PkIo\Model\IoLocalizedString
+     * @return \PkIo\Model\IoBarcodeType
      */
-    public function getLocalizedTitle()
+    public function getBarcode()
     {
-        return $this->container['localizedTitle'];
+        return $this->container['barcode'];
     }
 
     /**
-     * Sets localizedTitle
+     * Sets barcode
      *
-     * @param \PkIo\Model\IoLocalizedString $localizedTitle localizedTitle
+     * @param \PkIo\Model\IoBarcodeType $barcode barcode
      *
      * @return $this
      */
-    public function setLocalizedTitle($localizedTitle)
+    public function setBarcode($barcode)
     {
-        $this->container['localizedTitle'] = $localizedTitle;
+        $this->container['barcode'] = $barcode;
+
+        return $this;
+    }
+
+    /**
+     * Gets redemptionTimer
+     *
+     * @return \PkIo\Model\SingleUseCouponsRedemptionTimerSettings
+     */
+    public function getRedemptionTimer()
+    {
+        return $this->container['redemptionTimer'];
+    }
+
+    /**
+     * Sets redemptionTimer
+     *
+     * @param \PkIo\Model\SingleUseCouponsRedemptionTimerSettings $redemptionTimer redemptionTimer
+     *
+     * @return $this
+     */
+    public function setRedemptionTimer($redemptionTimer)
+    {
+        $this->container['redemptionTimer'] = $redemptionTimer;
 
         return $this;
     }

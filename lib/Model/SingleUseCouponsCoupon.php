@@ -61,7 +61,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
 'externalId' => 'string',
 'offerId' => 'string',
 'campaignId' => 'string',
-'pii' => '\PkIo\Model\IoPerson',
+'person' => '\PkIo\Model\IoPerson',
 'metaData' => 'map[string,string]',
 'sku' => 'string',
 'optOut' => 'bool',
@@ -83,7 +83,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
 'externalId' => null,
 'offerId' => null,
 'campaignId' => null,
-'pii' => null,
+'person' => null,
 'metaData' => null,
 'sku' => null,
 'optOut' => 'boolean',
@@ -126,7 +126,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
 'externalId' => 'externalId',
 'offerId' => 'offerId',
 'campaignId' => 'campaignId',
-'pii' => 'pii',
+'person' => 'person',
 'metaData' => 'metaData',
 'sku' => 'sku',
 'optOut' => 'optOut',
@@ -148,7 +148,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
 'externalId' => 'setExternalId',
 'offerId' => 'setOfferId',
 'campaignId' => 'setCampaignId',
-'pii' => 'setPii',
+'person' => 'setPerson',
 'metaData' => 'setMetaData',
 'sku' => 'setSku',
 'optOut' => 'setOptOut',
@@ -170,7 +170,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
 'externalId' => 'getExternalId',
 'offerId' => 'getOfferId',
 'campaignId' => 'getCampaignId',
-'pii' => 'getPii',
+'person' => 'getPerson',
 'metaData' => 'getMetaData',
 'sku' => 'getSku',
 'optOut' => 'getOptOut',
@@ -244,7 +244,7 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
         $this->container['externalId'] = isset($data['externalId']) ? $data['externalId'] : null;
         $this->container['offerId'] = isset($data['offerId']) ? $data['offerId'] : null;
         $this->container['campaignId'] = isset($data['campaignId']) ? $data['campaignId'] : null;
-        $this->container['pii'] = isset($data['pii']) ? $data['pii'] : null;
+        $this->container['person'] = isset($data['person']) ? $data['person'] : null;
         $this->container['metaData'] = isset($data['metaData']) ? $data['metaData'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
         $this->container['optOut'] = isset($data['optOut']) ? $data['optOut'] : null;
@@ -384,25 +384,25 @@ class SingleUseCouponsCoupon implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets pii
+     * Gets person
      *
      * @return \PkIo\Model\IoPerson
      */
-    public function getPii()
+    public function getPerson()
     {
-        return $this->container['pii'];
+        return $this->container['person'];
     }
 
     /**
-     * Sets pii
+     * Sets person
      *
-     * @param \PkIo\Model\IoPerson $pii pii
+     * @param \PkIo\Model\IoPerson $person person
      *
      * @return $this
      */
-    public function setPii($pii)
+    public function setPerson($person)
     {
-        $this->container['pii'] = $pii;
+        $this->container['person'] = $person;
 
         return $this;
     }

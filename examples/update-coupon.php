@@ -9,7 +9,7 @@ $config->setHost("https://api.pub1.passkit.io");
 $auth = new PkIo\Auth("myApiKey", "myApiSecret");
 
 // Create the API instance
-$apiInstance = new PkIo\Api\CouponRESTAPIApi(
+$apiInstance = new PkIo\Api\CouponsApi(
     new GuzzleHttp\Client(),
     $config
 );
