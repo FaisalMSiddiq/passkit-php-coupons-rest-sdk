@@ -1,6 +1,6 @@
 <?php
 /**
- * IoChartDataPoints
+ * IoFieldFilter
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * IoChartDataPoints Class Doc Comment
+ * IoFieldFilter Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IoChartDataPoints implements ModelInterface, ArrayAccess
+class IoFieldFilter implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ioChartDataPoints';
+    protected static $swaggerModelName = 'ioFieldFilter';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,13 +56,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'created' => 'int',
-'installed' => 'int',
-'updated' => 'int',
-'deleted' => 'int',
-'invalidated' => 'int',
-'custom' => 'int'    ];
+        'filterField' => 'string',
+'filterValue' => 'string',
+'filterOperator' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,13 +66,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'created' => 'int64',
-'installed' => 'int64',
-'updated' => 'int64',
-'deleted' => 'int64',
-'invalidated' => 'int64',
-'custom' => 'int64'    ];
+        'filterField' => null,
+'filterValue' => null,
+'filterOperator' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -105,13 +97,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'created' => 'created',
-'installed' => 'installed',
-'updated' => 'updated',
-'deleted' => 'deleted',
-'invalidated' => 'invalidated',
-'custom' => 'custom'    ];
+        'filterField' => 'filterField',
+'filterValue' => 'filterValue',
+'filterOperator' => 'filterOperator'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -119,13 +107,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'created' => 'setCreated',
-'installed' => 'setInstalled',
-'updated' => 'setUpdated',
-'deleted' => 'setDeleted',
-'invalidated' => 'setInvalidated',
-'custom' => 'setCustom'    ];
+        'filterField' => 'setFilterField',
+'filterValue' => 'setFilterValue',
+'filterOperator' => 'setFilterOperator'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -133,13 +117,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'created' => 'getCreated',
-'installed' => 'getInstalled',
-'updated' => 'getUpdated',
-'deleted' => 'getDeleted',
-'invalidated' => 'getInvalidated',
-'custom' => 'getCustom'    ];
+        'filterField' => 'getFilterField',
+'filterValue' => 'getFilterValue',
+'filterOperator' => 'getFilterOperator'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -199,13 +179,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['installed'] = isset($data['installed']) ? $data['installed'] : null;
-        $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['deleted'] = isset($data['deleted']) ? $data['deleted'] : null;
-        $this->container['invalidated'] = isset($data['invalidated']) ? $data['invalidated'] : null;
-        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['filterField'] = isset($data['filterField']) ? $data['filterField'] : null;
+        $this->container['filterValue'] = isset($data['filterValue']) ? $data['filterValue'] : null;
+        $this->container['filterOperator'] = isset($data['filterOperator']) ? $data['filterOperator'] : null;
     }
 
     /**
@@ -233,169 +209,73 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets filterField
      *
      * @return string
      */
-    public function getName()
+    public function getFilterField()
     {
-        return $this->container['name'];
+        return $this->container['filterField'];
     }
 
     /**
-     * Sets name
+     * Sets filterField
      *
-     * @param string $name name
+     * @param string $filterField Column name to filter results by.
      *
      * @return $this
      */
-    public function setName($name)
+    public function setFilterField($filterField)
     {
-        $this->container['name'] = $name;
+        $this->container['filterField'] = $filterField;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets filterValue
      *
-     * @return int
+     * @return string
      */
-    public function getCreated()
+    public function getFilterValue()
     {
-        return $this->container['created'];
+        return $this->container['filterValue'];
     }
 
     /**
-     * Sets created
+     * Sets filterValue
      *
-     * @param int $created Daily, monthly or yearly total of pass created.
+     * @param string $filterValue Values to test against the filter fields.
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setFilterValue($filterValue)
     {
-        $this->container['created'] = $created;
+        $this->container['filterValue'] = $filterValue;
 
         return $this;
     }
 
     /**
-     * Gets installed
+     * Gets filterOperator
      *
-     * @return int
+     * @return string
      */
-    public function getInstalled()
+    public function getFilterOperator()
     {
-        return $this->container['installed'];
+        return $this->container['filterOperator'];
     }
 
     /**
-     * Sets installed
+     * Sets filterOperator
      *
-     * @param int $installed Daily, monthly or yearly total of pass installed.
+     * @param string $filterOperator filterOperator
      *
      * @return $this
      */
-    public function setInstalled($installed)
+    public function setFilterOperator($filterOperator)
     {
-        $this->container['installed'] = $installed;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return int
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param int $updated Daily, monthly or yearly total of pass updated.
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return int
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param int $deleted Daily, monthly or yearly total of pass deleted.
-     *
-     * @return $this
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets invalidated
-     *
-     * @return int
-     */
-    public function getInvalidated()
-    {
-        return $this->container['invalidated'];
-    }
-
-    /**
-     * Sets invalidated
-     *
-     * @param int $invalidated Daily, monthly or yearly total of pass invalidated.
-     *
-     * @return $this
-     */
-    public function setInvalidated($invalidated)
-    {
-        $this->container['invalidated'] = $invalidated;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom
-     *
-     * @return int
-     */
-    public function getCustom()
-    {
-        return $this->container['custom'];
-    }
-
-    /**
-     * Sets custom
-     *
-     * @param int $custom Daily, monthly or yearly total of custom data (in case this field used by a protocol; it can put whatever is preferred in here).
-     *
-     * @return $this
-     */
-    public function setCustom($custom)
-    {
-        $this->container['custom'] = $custom;
+        $this->container['filterOperator'] = $filterOperator;
 
         return $this;
     }

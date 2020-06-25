@@ -1,6 +1,6 @@
 <?php
 /**
- * IoChartDataPoints
+ * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * IoChartDataPoints Class Doc Comment
+ * SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IoChartDataPoints implements ModelInterface, ArrayAccess
+class SingleUseCouponsCustomerInitiatedCodeProvideOnRedeem implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ioChartDataPoints';
+    protected static $swaggerModelName = 'single_use_couponsCustomerInitiatedCodeProvideOnRedeem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,13 +56,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'created' => 'int',
-'installed' => 'int',
-'updated' => 'int',
-'deleted' => 'int',
-'invalidated' => 'int',
-'custom' => 'int'    ];
+        'validCodes' => 'string[]',
+'redemptionCodeInput' => '\PkIo\Model\SingleUseCouponsInputField',
+'submitButtonText' => 'string',
+'localizedSubmitButtonText' => '\PkIo\Model\IoLocalizedString'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,13 +67,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'created' => 'int64',
-'installed' => 'int64',
-'updated' => 'int64',
-'deleted' => 'int64',
-'invalidated' => 'int64',
-'custom' => 'int64'    ];
+        'validCodes' => null,
+'redemptionCodeInput' => null,
+'submitButtonText' => null,
+'localizedSubmitButtonText' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -105,13 +99,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'created' => 'created',
-'installed' => 'installed',
-'updated' => 'updated',
-'deleted' => 'deleted',
-'invalidated' => 'invalidated',
-'custom' => 'custom'    ];
+        'validCodes' => 'validCodes',
+'redemptionCodeInput' => 'redemptionCodeInput',
+'submitButtonText' => 'submitButtonText',
+'localizedSubmitButtonText' => 'localizedSubmitButtonText'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -119,13 +110,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'created' => 'setCreated',
-'installed' => 'setInstalled',
-'updated' => 'setUpdated',
-'deleted' => 'setDeleted',
-'invalidated' => 'setInvalidated',
-'custom' => 'setCustom'    ];
+        'validCodes' => 'setValidCodes',
+'redemptionCodeInput' => 'setRedemptionCodeInput',
+'submitButtonText' => 'setSubmitButtonText',
+'localizedSubmitButtonText' => 'setLocalizedSubmitButtonText'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -133,13 +121,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'created' => 'getCreated',
-'installed' => 'getInstalled',
-'updated' => 'getUpdated',
-'deleted' => 'getDeleted',
-'invalidated' => 'getInvalidated',
-'custom' => 'getCustom'    ];
+        'validCodes' => 'getValidCodes',
+'redemptionCodeInput' => 'getRedemptionCodeInput',
+'submitButtonText' => 'getSubmitButtonText',
+'localizedSubmitButtonText' => 'getLocalizedSubmitButtonText'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -199,13 +184,10 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['installed'] = isset($data['installed']) ? $data['installed'] : null;
-        $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['deleted'] = isset($data['deleted']) ? $data['deleted'] : null;
-        $this->container['invalidated'] = isset($data['invalidated']) ? $data['invalidated'] : null;
-        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['validCodes'] = isset($data['validCodes']) ? $data['validCodes'] : null;
+        $this->container['redemptionCodeInput'] = isset($data['redemptionCodeInput']) ? $data['redemptionCodeInput'] : null;
+        $this->container['submitButtonText'] = isset($data['submitButtonText']) ? $data['submitButtonText'] : null;
+        $this->container['localizedSubmitButtonText'] = isset($data['localizedSubmitButtonText']) ? $data['localizedSubmitButtonText'] : null;
     }
 
     /**
@@ -233,169 +215,97 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets validCodes
+     *
+     * @return string[]
+     */
+    public function getValidCodes()
+    {
+        return $this->container['validCodes'];
+    }
+
+    /**
+     * Sets validCodes
+     *
+     * @param string[] $validCodes Optional array of valid codes that can be input on redemption.
+     *
+     * @return $this
+     */
+    public function setValidCodes($validCodes)
+    {
+        $this->container['validCodes'] = $validCodes;
+
+        return $this;
+    }
+
+    /**
+     * Gets redemptionCodeInput
+     *
+     * @return \PkIo\Model\SingleUseCouponsInputField
+     */
+    public function getRedemptionCodeInput()
+    {
+        return $this->container['redemptionCodeInput'];
+    }
+
+    /**
+     * Sets redemptionCodeInput
+     *
+     * @param \PkIo\Model\SingleUseCouponsInputField $redemptionCodeInput redemptionCodeInput
+     *
+     * @return $this
+     */
+    public function setRedemptionCodeInput($redemptionCodeInput)
+    {
+        $this->container['redemptionCodeInput'] = $redemptionCodeInput;
+
+        return $this;
+    }
+
+    /**
+     * Gets submitButtonText
      *
      * @return string
      */
-    public function getName()
+    public function getSubmitButtonText()
     {
-        return $this->container['name'];
+        return $this->container['submitButtonText'];
     }
 
     /**
-     * Sets name
+     * Sets submitButtonText
      *
-     * @param string $name name
+     * @param string $submitButtonText Submit button to confirm the validation code.
      *
      * @return $this
      */
-    public function setName($name)
+    public function setSubmitButtonText($submitButtonText)
     {
-        $this->container['name'] = $name;
+        $this->container['submitButtonText'] = $submitButtonText;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets localizedSubmitButtonText
      *
-     * @return int
+     * @return \PkIo\Model\IoLocalizedString
      */
-    public function getCreated()
+    public function getLocalizedSubmitButtonText()
     {
-        return $this->container['created'];
+        return $this->container['localizedSubmitButtonText'];
     }
 
     /**
-     * Sets created
+     * Sets localizedSubmitButtonText
      *
-     * @param int $created Daily, monthly or yearly total of pass created.
+     * @param \PkIo\Model\IoLocalizedString $localizedSubmitButtonText localizedSubmitButtonText
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setLocalizedSubmitButtonText($localizedSubmitButtonText)
     {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets installed
-     *
-     * @return int
-     */
-    public function getInstalled()
-    {
-        return $this->container['installed'];
-    }
-
-    /**
-     * Sets installed
-     *
-     * @param int $installed Daily, monthly or yearly total of pass installed.
-     *
-     * @return $this
-     */
-    public function setInstalled($installed)
-    {
-        $this->container['installed'] = $installed;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return int
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param int $updated Daily, monthly or yearly total of pass updated.
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return int
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param int $deleted Daily, monthly or yearly total of pass deleted.
-     *
-     * @return $this
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets invalidated
-     *
-     * @return int
-     */
-    public function getInvalidated()
-    {
-        return $this->container['invalidated'];
-    }
-
-    /**
-     * Sets invalidated
-     *
-     * @param int $invalidated Daily, monthly or yearly total of pass invalidated.
-     *
-     * @return $this
-     */
-    public function setInvalidated($invalidated)
-    {
-        $this->container['invalidated'] = $invalidated;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom
-     *
-     * @return int
-     */
-    public function getCustom()
-    {
-        return $this->container['custom'];
-    }
-
-    /**
-     * Sets custom
-     *
-     * @param int $custom Daily, monthly or yearly total of custom data (in case this field used by a protocol; it can put whatever is preferred in here).
-     *
-     * @return $this
-     */
-    public function setCustom($custom)
-    {
-        $this->container['custom'] = $custom;
+        $this->container['localizedSubmitButtonText'] = $localizedSubmitButtonText;
 
         return $this;
     }

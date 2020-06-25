@@ -91,22 +91,16 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \PkIo\Model\IoCount
      */
-    public function countCouponsByCouponCampaign($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countCouponsByCouponCampaign($body, $couponCampaignId)
     {
-        list($response) = $this->countCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        list($response) = $this->countCouponsByCouponCampaignWithHttpInfo($body, $couponCampaignId);
         return $response;
     }
 
@@ -115,23 +109,17 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \PkIo\Model\IoCount, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countCouponsByCouponCampaignWithHttpInfo($body, $couponCampaignId)
     {
         $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->countCouponsByCouponCampaignRequest($body, $couponCampaignId);
 
         try {
             $options = $this->createHttpClientOption();
@@ -237,21 +225,15 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCouponsByCouponCampaignAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countCouponsByCouponCampaignAsync($body, $couponCampaignId)
     {
-        return $this->countCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+        return $this->countCouponsByCouponCampaignAsyncWithHttpInfo($body, $couponCampaignId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -264,22 +246,16 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countCouponsByCouponCampaignAsyncWithHttpInfo($body, $couponCampaignId)
     {
         $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->countCouponsByCouponCampaignRequest($body, $couponCampaignId);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -321,6 +297,351 @@ class CouponsApi
     /**
      * Create request for operation 'countCouponsByCouponCampaign'
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function countCouponsByCouponCampaignRequest($body, $couponCampaignId)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling countCouponsByCouponCampaign'
+            );
+        }
+        // verify the required parameter 'couponCampaignId' is set
+        if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $couponCampaignId when calling countCouponsByCouponCampaign'
+            );
+        }
+
+        $resourcePath = '/coupon/singleUse/coupons/count/{couponCampaignId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($couponCampaignId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'couponCampaignId' . '}',
+                ObjectSerializer::toPathValue($couponCampaignId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation countCouponsByCouponCampaignDeprecated
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \PkIo\Model\IoCount
+     */
+    public function countCouponsByCouponCampaignDeprecated($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        list($response) = $this->countCouponsByCouponCampaignDeprecatedWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        return $response;
+    }
+
+    /**
+     * Operation countCouponsByCouponCampaignDeprecatedWithHttpInfo
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \PkIo\Model\IoCount, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countCouponsByCouponCampaignDeprecatedWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = '\PkIo\Model\IoCount';
+        $request = $this->countCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\IoCount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countCouponsByCouponCampaignDeprecatedAsync
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countCouponsByCouponCampaignDeprecatedAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        return $this->countCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = '\PkIo\Model\IoCount';
+        $request = $this->countCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countCouponsByCouponCampaignDeprecated'
+     *
      * @param  string $couponCampaignId Coupon Campaign ID (required)
      * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
      * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
@@ -333,12 +654,12 @@ class CouponsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function countCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    protected function countCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
     {
         // verify the required parameter 'couponCampaignId' is set
         if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $couponCampaignId when calling countCouponsByCouponCampaign'
+                'Missing the required parameter $couponCampaignId when calling countCouponsByCouponCampaignDeprecated'
             );
         }
 
@@ -1405,22 +1726,16 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function listCouponsByCouponCampaign($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponsByCouponCampaign($body, $couponCampaignId)
     {
-        list($response) = $this->listCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        list($response) = $this->listCouponsByCouponCampaignWithHttpInfo($body, $couponCampaignId);
         return $response;
     }
 
@@ -1429,23 +1744,17 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCouponsByCouponCampaignWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponsByCouponCampaignWithHttpInfo($body, $couponCampaignId)
     {
         $returnType = 'object';
-        $request = $this->listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listCouponsByCouponCampaignRequest($body, $couponCampaignId);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1551,21 +1860,15 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCouponsByCouponCampaignAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponsByCouponCampaignAsync($body, $couponCampaignId)
     {
-        return $this->listCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+        return $this->listCouponsByCouponCampaignAsyncWithHttpInfo($body, $couponCampaignId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1578,22 +1881,16 @@ class CouponsApi
      *
      * List Coupons
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
      * @param  string $couponCampaignId Coupon Campaign ID (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCouponsByCouponCampaignAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listCouponsByCouponCampaignAsyncWithHttpInfo($body, $couponCampaignId)
     {
         $returnType = 'object';
-        $request = $this->listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listCouponsByCouponCampaignRequest($body, $couponCampaignId);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1635,6 +1932,351 @@ class CouponsApi
     /**
      * Create request for operation 'listCouponsByCouponCampaign'
      *
+     * @param  \PkIo\Model\SingleUseCouponsListRequest $body (required)
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function listCouponsByCouponCampaignRequest($body, $couponCampaignId)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling listCouponsByCouponCampaign'
+            );
+        }
+        // verify the required parameter 'couponCampaignId' is set
+        if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $couponCampaignId when calling listCouponsByCouponCampaign'
+            );
+        }
+
+        $resourcePath = '/coupon/singleUse/coupons/list/{couponCampaignId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($couponCampaignId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'couponCampaignId' . '}',
+                ObjectSerializer::toPathValue($couponCampaignId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listCouponsByCouponCampaignDeprecated
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function listCouponsByCouponCampaignDeprecated($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        list($response) = $this->listCouponsByCouponCampaignDeprecatedWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        return $response;
+    }
+
+    /**
+     * Operation listCouponsByCouponCampaignDeprecatedWithHttpInfo
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCouponsByCouponCampaignDeprecatedWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCouponsByCouponCampaignDeprecatedAsync
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCouponsByCouponCampaignDeprecatedAsync($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        return $this->listCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo
+     *
+     * List Coupons [DEPRECATED]
+     *
+     * @param  string $couponCampaignId Coupon Campaign ID (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCouponsByCouponCampaignDeprecatedAsyncWithHttpInfo($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCouponsByCouponCampaignDeprecated'
+     *
      * @param  string $couponCampaignId Coupon Campaign ID (required)
      * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
      * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
@@ -1647,12 +2289,12 @@ class CouponsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listCouponsByCouponCampaignRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    protected function listCouponsByCouponCampaignDeprecatedRequest($couponCampaignId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
     {
         // verify the required parameter 'couponCampaignId' is set
         if ($couponCampaignId === null || (is_array($couponCampaignId) && count($couponCampaignId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $couponCampaignId when calling listCouponsByCouponCampaign'
+                'Missing the required parameter $couponCampaignId when calling listCouponsByCouponCampaignDeprecated'
             );
         }
 

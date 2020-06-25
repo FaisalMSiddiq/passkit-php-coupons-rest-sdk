@@ -1,6 +1,6 @@
 <?php
 /**
- * IoChartDataPoints
+ * SingleUseCouponsSelfHostedPage
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * IoChartDataPoints Class Doc Comment
+ * SingleUseCouponsSelfHostedPage Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IoChartDataPoints implements ModelInterface, ArrayAccess
+class SingleUseCouponsSelfHostedPage implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ioChartDataPoints';
+    protected static $swaggerModelName = 'single_use_couponsSelfHostedPage';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,13 +56,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'created' => 'int',
-'installed' => 'int',
-'updated' => 'int',
-'deleted' => 'int',
-'invalidated' => 'int',
-'custom' => 'int'    ];
+        'url' => 'string',
+'title' => 'string',
+'localizedTitle' => '\PkIo\Model\IoLocalizedString'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,13 +66,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'created' => 'int64',
-'installed' => 'int64',
-'updated' => 'int64',
-'deleted' => 'int64',
-'invalidated' => 'int64',
-'custom' => 'int64'    ];
+        'url' => null,
+'title' => null,
+'localizedTitle' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -105,13 +97,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'created' => 'created',
-'installed' => 'installed',
-'updated' => 'updated',
-'deleted' => 'deleted',
-'invalidated' => 'invalidated',
-'custom' => 'custom'    ];
+        'url' => 'url',
+'title' => 'title',
+'localizedTitle' => 'localizedTitle'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -119,13 +107,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'created' => 'setCreated',
-'installed' => 'setInstalled',
-'updated' => 'setUpdated',
-'deleted' => 'setDeleted',
-'invalidated' => 'setInvalidated',
-'custom' => 'setCustom'    ];
+        'url' => 'setUrl',
+'title' => 'setTitle',
+'localizedTitle' => 'setLocalizedTitle'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -133,13 +117,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'created' => 'getCreated',
-'installed' => 'getInstalled',
-'updated' => 'getUpdated',
-'deleted' => 'getDeleted',
-'invalidated' => 'getInvalidated',
-'custom' => 'getCustom'    ];
+        'url' => 'getUrl',
+'title' => 'getTitle',
+'localizedTitle' => 'getLocalizedTitle'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -199,13 +179,9 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['installed'] = isset($data['installed']) ? $data['installed'] : null;
-        $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['deleted'] = isset($data['deleted']) ? $data['deleted'] : null;
-        $this->container['invalidated'] = isset($data['invalidated']) ? $data['invalidated'] : null;
-        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['localizedTitle'] = isset($data['localizedTitle']) ? $data['localizedTitle'] : null;
     }
 
     /**
@@ -233,169 +209,73 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets url
      *
      * @return string
      */
-    public function getName()
+    public function getUrl()
     {
-        return $this->container['name'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets name
+     * Sets url
      *
-     * @param string $name name
+     * @param string $url url
      *
      * @return $this
      */
-    public function setName($name)
+    public function setUrl($url)
     {
-        $this->container['name'] = $name;
+        $this->container['url'] = $url;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets title
      *
-     * @return int
+     * @return string
      */
-    public function getCreated()
+    public function getTitle()
     {
-        return $this->container['created'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets created
+     * Sets title
      *
-     * @param int $created Daily, monthly or yearly total of pass created.
+     * @param string $title title
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setTitle($title)
     {
-        $this->container['created'] = $created;
+        $this->container['title'] = $title;
 
         return $this;
     }
 
     /**
-     * Gets installed
+     * Gets localizedTitle
      *
-     * @return int
+     * @return \PkIo\Model\IoLocalizedString
      */
-    public function getInstalled()
+    public function getLocalizedTitle()
     {
-        return $this->container['installed'];
+        return $this->container['localizedTitle'];
     }
 
     /**
-     * Sets installed
+     * Sets localizedTitle
      *
-     * @param int $installed Daily, monthly or yearly total of pass installed.
+     * @param \PkIo\Model\IoLocalizedString $localizedTitle localizedTitle
      *
      * @return $this
      */
-    public function setInstalled($installed)
+    public function setLocalizedTitle($localizedTitle)
     {
-        $this->container['installed'] = $installed;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return int
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param int $updated Daily, monthly or yearly total of pass updated.
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return int
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param int $deleted Daily, monthly or yearly total of pass deleted.
-     *
-     * @return $this
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets invalidated
-     *
-     * @return int
-     */
-    public function getInvalidated()
-    {
-        return $this->container['invalidated'];
-    }
-
-    /**
-     * Sets invalidated
-     *
-     * @param int $invalidated Daily, monthly or yearly total of pass invalidated.
-     *
-     * @return $this
-     */
-    public function setInvalidated($invalidated)
-    {
-        $this->container['invalidated'] = $invalidated;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom
-     *
-     * @return int
-     */
-    public function getCustom()
-    {
-        return $this->container['custom'];
-    }
-
-    /**
-     * Sets custom
-     *
-     * @param int $custom Daily, monthly or yearly total of custom data (in case this field used by a protocol; it can put whatever is preferred in here).
-     *
-     * @return $this
-     */
-    public function setCustom($custom)
-    {
-        $this->container['custom'] = $custom;
+        $this->container['localizedTitle'] = $localizedTitle;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * IoChartDataPoints
+ * IoFilters
  *
  * PHP version 5
  *
@@ -32,14 +32,15 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * IoChartDataPoints Class Doc Comment
+ * IoFilters Class Doc Comment
  *
  * @category Class
+ * @description Filters applies multiple filter conditions to retrieve matched records.
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IoChartDataPoints implements ModelInterface, ArrayAccess
+class IoFilters implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +49,7 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ioChartDataPoints';
+    protected static $swaggerModelName = 'ioFilters';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,13 +57,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'created' => 'int',
-'installed' => 'int',
-'updated' => 'int',
-'deleted' => 'int',
-'invalidated' => 'int',
-'custom' => 'int'    ];
+        'limit' => 'int',
+'offset' => 'int',
+'filterGroups' => '\PkIo\Model\IoFilterGroup[]',
+'orderBy' => 'string',
+'orderAsc' => 'bool'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,13 +69,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'created' => 'int64',
-'installed' => 'int64',
-'updated' => 'int64',
-'deleted' => 'int64',
-'invalidated' => 'int64',
-'custom' => 'int64'    ];
+        'limit' => 'int32',
+'offset' => 'int32',
+'filterGroups' => null,
+'orderBy' => null,
+'orderAsc' => 'boolean'    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -105,13 +102,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'created' => 'created',
-'installed' => 'installed',
-'updated' => 'updated',
-'deleted' => 'deleted',
-'invalidated' => 'invalidated',
-'custom' => 'custom'    ];
+        'limit' => 'limit',
+'offset' => 'offset',
+'filterGroups' => 'filterGroups',
+'orderBy' => 'orderBy',
+'orderAsc' => 'orderAsc'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -119,13 +114,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'created' => 'setCreated',
-'installed' => 'setInstalled',
-'updated' => 'setUpdated',
-'deleted' => 'setDeleted',
-'invalidated' => 'setInvalidated',
-'custom' => 'setCustom'    ];
+        'limit' => 'setLimit',
+'offset' => 'setOffset',
+'filterGroups' => 'setFilterGroups',
+'orderBy' => 'setOrderBy',
+'orderAsc' => 'setOrderAsc'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -133,13 +126,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'created' => 'getCreated',
-'installed' => 'getInstalled',
-'updated' => 'getUpdated',
-'deleted' => 'getDeleted',
-'invalidated' => 'getInvalidated',
-'custom' => 'getCustom'    ];
+        'limit' => 'getLimit',
+'offset' => 'getOffset',
+'filterGroups' => 'getFilterGroups',
+'orderBy' => 'getOrderBy',
+'orderAsc' => 'getOrderAsc'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -199,13 +190,11 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['installed'] = isset($data['installed']) ? $data['installed'] : null;
-        $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['deleted'] = isset($data['deleted']) ? $data['deleted'] : null;
-        $this->container['invalidated'] = isset($data['invalidated']) ? $data['invalidated'] : null;
-        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
+        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
+        $this->container['filterGroups'] = isset($data['filterGroups']) ? $data['filterGroups'] : null;
+        $this->container['orderBy'] = isset($data['orderBy']) ? $data['orderBy'] : null;
+        $this->container['orderAsc'] = isset($data['orderAsc']) ? $data['orderAsc'] : null;
     }
 
     /**
@@ -233,169 +222,121 @@ class IoChartDataPoints implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets limit
+     *
+     * @return int
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records.
+     *
+     * @return $this
+     */
+    public function setLimit($limit)
+    {
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets offset
+     *
+     * @return int
+     */
+    public function getOffset()
+    {
+        return $this->container['offset'];
+    }
+
+    /**
+     * Sets offset
+     *
+     * @param int $offset Allows you to offset the first record returned by the limit.
+     *
+     * @return $this
+     */
+    public function setOffset($offset)
+    {
+        $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets filterGroups
+     *
+     * @return \PkIo\Model\IoFilterGroup[]
+     */
+    public function getFilterGroups()
+    {
+        return $this->container['filterGroups'];
+    }
+
+    /**
+     * Sets filterGroups
+     *
+     * @param \PkIo\Model\IoFilterGroup[] $filterGroups filterGroups
+     *
+     * @return $this
+     */
+    public function setFilterGroups($filterGroups)
+    {
+        $this->container['filterGroups'] = $filterGroups;
+
+        return $this;
+    }
+
+    /**
+     * Gets orderBy
      *
      * @return string
      */
-    public function getName()
+    public function getOrderBy()
     {
-        return $this->container['name'];
+        return $this->container['orderBy'];
     }
 
     /**
-     * Sets name
+     * Sets orderBy
      *
-     * @param string $name name
+     * @param string $orderBy Field to order results by.
      *
      * @return $this
      */
-    public function setName($name)
+    public function setOrderBy($orderBy)
     {
-        $this->container['name'] = $name;
+        $this->container['orderBy'] = $orderBy;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets orderAsc
      *
-     * @return int
+     * @return bool
      */
-    public function getCreated()
+    public function getOrderAsc()
     {
-        return $this->container['created'];
+        return $this->container['orderAsc'];
     }
 
     /**
-     * Sets created
+     * Sets orderAsc
      *
-     * @param int $created Daily, monthly or yearly total of pass created.
+     * @param bool $orderAsc Will return in ascending order if true, or descending order if false.
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setOrderAsc($orderAsc)
     {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets installed
-     *
-     * @return int
-     */
-    public function getInstalled()
-    {
-        return $this->container['installed'];
-    }
-
-    /**
-     * Sets installed
-     *
-     * @param int $installed Daily, monthly or yearly total of pass installed.
-     *
-     * @return $this
-     */
-    public function setInstalled($installed)
-    {
-        $this->container['installed'] = $installed;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return int
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param int $updated Daily, monthly or yearly total of pass updated.
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return int
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param int $deleted Daily, monthly or yearly total of pass deleted.
-     *
-     * @return $this
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets invalidated
-     *
-     * @return int
-     */
-    public function getInvalidated()
-    {
-        return $this->container['invalidated'];
-    }
-
-    /**
-     * Sets invalidated
-     *
-     * @param int $invalidated Daily, monthly or yearly total of pass invalidated.
-     *
-     * @return $this
-     */
-    public function setInvalidated($invalidated)
-    {
-        $this->container['invalidated'] = $invalidated;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom
-     *
-     * @return int
-     */
-    public function getCustom()
-    {
-        return $this->container['custom'];
-    }
-
-    /**
-     * Sets custom
-     *
-     * @param int $custom Daily, monthly or yearly total of custom data (in case this field used by a protocol; it can put whatever is preferred in here).
-     *
-     * @return $this
-     */
-    public function setCustom($custom)
-    {
-        $this->container['custom'] = $custom;
+        $this->container['orderAsc'] = $orderAsc;
 
         return $this;
     }
